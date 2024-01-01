@@ -60,13 +60,19 @@ public class WechselkursRechner {
     }
 
     private void berechneWechselkurs() {
+
         try {
+
             String betragText = betragEingabe.getText().replace(',', '.');
             double betrag = Double.parseDouble(betragText);
+
             String ausgewaehlteWaehrung = (String) waehrungAuswahl.getSelectedItem();
             double wechselkurs = wechselkurse.getOrDefault(ausgewaehlteWaehrung, 0.0);
+
             double umgerechneterBetrag = wechselkursRechner.apply(betrag, wechselkurs);
+
             ergebnisAnzeige.setText(String.format("%.2f %s", umgerechneterBetrag, ausgewaehlteWaehrung));
+
         } catch (NumberFormatException ex) {
             ergebnisAnzeige.setText("Ungültige Eingabe");
         }
